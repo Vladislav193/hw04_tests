@@ -50,7 +50,7 @@ class PostURLTests(TestCase):
 
     def test_edit_list_url_redirect_anonymous_on_login(self):
         response = self.guest_client.get(f'/posts/{self.post.pk}/edit/', 
-                                         follow=True)
+                                        follow=True)
         self.assertRedirects(
             response, f'/auth/login/?next=/posts/{self.post.pk}/edit/')
 
