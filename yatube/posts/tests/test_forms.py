@@ -53,6 +53,7 @@ class PostCreateFormTest(TestCase):
             follow=True
         )
         self.assertRedirects(response, 
-                             reverse('posts:detail', kwargs={'post_id': f'{self.post.pk}'}))
+                            reverse('posts:detail',
+                            kwargs={'post_id': f'{self.post.pk}'}))
         self.assertEqual(Post.objects.count(), posts_count)
         self.assertEqual(Post.objects.get('id').text, form_date['text'])

@@ -80,8 +80,8 @@ class PostPagesTests(TestCase):
                 self.assertIsInstance(form_field, expected)
 
     def test_post_edit_context(self):
-        response = self.authorized_client.get(reverse('posts:post_edit',
-                                              kwargs={'post_id': self.post.id}))
+        response = (self.authorized_client.get(reverse
+                    ('posts:post_edit', kwargs={'post_id': self.post.id})))
         form_fields = {
             'group': forms.fields.ChoiceField,
             'text': forms.fields.CharField,
@@ -134,7 +134,8 @@ class PaginatorViewsTest(TestCase):
         '''Проверка: на второй странице должно быть три поста.'''
         urls = {
             reverse('posts:index') + '?page=2': 'posts/index.html',
-            reverse('posts:group_list', kwargs={'slug': 'test-slug'}) + '?page=2':
+            reverse('posts:group_list', 
+                    kwargs={'slug': 'test-slug'}) + '?page=2':
             'posts/group_list.html',
             reverse('posts:profile', kwargs={'username': 'Test'})+ '?page=2':
             'profile.html',
