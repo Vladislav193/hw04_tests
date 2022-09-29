@@ -134,10 +134,10 @@ class PaginatorViewsTest(TestCase):
         '''Проверка: на второй странице должно быть три поста.'''
         urls = {
             reverse('posts:index') + '?page=2': 'posts/index.html',
-            reverse('posts:group_list', 
+            reverse('posts:group_list',
                     kwargs={'slug': 'test-slug'}) + '?page=2':
             'posts/group_list.html',
-            reverse('posts:profile', kwargs={'username': 'Test'})+ '?page=2':
+            reverse('posts:profile', kwargs={'username': 'Test'}) + '?page=2':
             'profile.html',
         }
         for tested_url in urls.keys():
