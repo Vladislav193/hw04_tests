@@ -18,13 +18,11 @@ class PostPagesTests(TestCase):
         cls.group = Group.objects.create(
             title='Тестовая группа',
             slug='test-slug',
-            description='Тестовое описание',
-            )
+            description='Тестовое описание',)
         cls.post = Post.objects.create(
             author=cls.user,
             text='Тестовый пост',
-            group=cls.group
-            )
+            group=cls.group)
 
     def setUp(self):
         self.authorized_client = Client()
@@ -36,8 +34,10 @@ class PostPagesTests(TestCase):
             'posts/index.html': reverse('posts:index'),
             'posts/post_create.html': reverse('posts:post_create'),
             'posts/post_detail.html': (
-                reverse('posts:post_detail', kwargs={'post_id': f'{self.post.pk}'})),
-            'posts/profile.html': reverse('posts:profile', kwargs={'username':'Test'}),
+                reverse('posts:post_detail', 
+                        kwargs={'post_id': f'{self.post.pk}'})),
+            'posts/profile.html': reverse('posts:profile', 
+                                          kwargs={'username':'Test'}),
             'posts/group_list.html': (
                 reverse('posts:group_list', kwargs={'slug': 'test-slug'})
             ),

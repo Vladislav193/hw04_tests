@@ -19,7 +19,7 @@ class PostURLTests(TestCase):
         cls.post = Post.objects.create(
             author=cls.user,
             text='Тестовый пост'
-            )
+        )
 
     def setUp(self):
         self.guest_client = Client()
@@ -49,7 +49,8 @@ class PostURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_edit_list_url_redirect_anonymous_on_login(self):
-        response = self.guest_client.get(f'/posts/{self.post.pk}/edit/', follow=True)
+        response = self.guest_client.get(f'/posts/{self.post.pk}/edit/', 
+                                         follow=True)
         self.assertRedirects(
             response, f'/auth/login/?next=/posts/{self.post.pk}/edit/')
 
