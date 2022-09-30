@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
+from http import HTTPStatus
 
 from ..models import Group, Post
 
@@ -30,10 +31,10 @@ class PostURLTests(TestCase):
         """проверка общейдоступные страницы"""
         templates_url_names = {
             '/': 200,
-            '/group/test-slug/': 200,
-            '/profile/test/': 200,
-            f'/posts/{self.post.pk}/': 200,
-            '/unexisting_page/': 404
+            '/group/test-slug/': HTTPStatus.OK,
+            '/profile/test/': HTTPStatus.OK,
+            f'/posts/{self.post.pk}/': HTTPStatus.OK,
+            '/unexisting_page/': HTTPStatus.NOT_FOUND
         }
         for url, status in templates_url_names.items():
             with self.subTest(url=url):

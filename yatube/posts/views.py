@@ -7,11 +7,9 @@ from .forms import PostForm
 
 
 def index(request):
-    title = 'Последние обновления'
     page_obj = get_page(Post.objects.all(), request)
     context = {
-        'page_obj': page_obj,
-        'title': title,
+        'page_obj': page_obj
     }
     return render(request, 'posts/index.html', context)
 
@@ -44,12 +42,10 @@ def profile(request, username):
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    post_count = post.author.posts.count()
     author_post = post.author
     title = f'Пост {post.text[:30]}'
     context = {
         'post': post,
-        'post_count': post_count,
         'title': title,
         'author_post': author_post
     }

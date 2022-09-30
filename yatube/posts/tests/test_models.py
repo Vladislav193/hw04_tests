@@ -1,7 +1,8 @@
+from tokenize import group
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ..models import Group, Post
+from posts.models import Group, Post
 
 User = get_user_model()
 
@@ -27,3 +28,15 @@ class PostModelTest(TestCase):
         self.assertEqual(str(group), 'Тестовая группа')
         post = PostModelTest.post
         self.assertEqual(str(post), 'Тестовый пост')
+
+    def test_title_label(self):
+        """verbose_name поля title совпадает с ожидаемым."""
+        group = PostModelTest.group
+        verbose = group._meta.get_field('title').verbose_name
+        self.assertEqual(verbose, 'Заголовок')
+
+    def test_title_help_text(self):
+        """help_text поля title совпадает с ожидаемым."""
+        group = PostModelTest.group
+        help_text = group._meta.get_field('title').help_text
+        self.assertEqual(help_text, 'Задача')

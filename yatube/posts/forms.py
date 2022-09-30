@@ -9,9 +9,3 @@ class PostForm(ModelForm):
         fields = ["group", "text"]
         labels = {'group': 'Группа', 'text': 'Сообщение'}
         help_texts = {'group': 'Выберите группу', 'text': 'Введите ссообщение'}
-
-    def clean_subject(self):
-        data = self.changed_data['text']
-        if data == '':
-            raise forms.ValidationError('заполните поле')
-        return data
