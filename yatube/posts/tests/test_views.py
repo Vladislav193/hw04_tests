@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from django import forms
-from  posts.utils import PAGINATOR_PAGE
+from posts.utils import PAGINATOR_PAGE
 
 
 from posts.models import Group, Post
@@ -141,7 +141,7 @@ class PaginatorViewsTest(TestCase):
             reverse('posts:profile', kwargs={'username': 'Test'}) + '?page=2':
             'profile.html',
         }
-        posts_count  = TEST_POST - PAGINATOR_PAGE
+        posts_count = TEST_POST - PAGINATOR_PAGE
         for tested_url in urls.keys():
             response = self.client.get(tested_url)
             self.assertEqual(len(response.context['page_obj']), posts_count)
